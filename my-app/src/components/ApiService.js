@@ -16,7 +16,7 @@ export class ApiService {
 
     GetBusFromCode(bus_code) {
         return new Promise((resolve) =>
-            fetch("/GetBooks/" + bus_code, {
+            fetch("/GetBusFromCode/" + bus_code, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export class ApiService {
 
     GetBusStopsFromPostcode(postcode) {
         return new Promise((resolve) =>
-            fetch("/GetBooks/" + postcode, {
+            fetch("/GetBusStopsFromPostcode/" + postcode, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

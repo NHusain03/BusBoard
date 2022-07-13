@@ -8,21 +8,19 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import GetBusesTab from "./GetBuses";
 
-
 export default function App() {
-
-  const APIService = new ApiService()
+  const apiService = new ApiService()
   const [state, setState] = useState(BLANK_STATE);
 
-  const initialize = (status) => {
-    setState(status);
+  let healthCheck = () => {
+    apiService.healthCheck().then((status) => {
+      initialize(status);
+    });
   };
 
-  let healthCheck = () => {
-    APIService.healthCheck().then((outputStatus) => {
-      initialize(outputStatus);
-      })
-    };
+  let initialize = (status) => {
+    setState(status);
+  };
 
   if (state === BLANK_STATE) {
     healthCheck()
@@ -31,11 +29,10 @@ export default function App() {
   return (
     <div>
       <Container>
-          <HomePage />
-          {state}
+          <HomePage/>
           <Tabs>
             <TabList>
-              <Tab>Get Buses</Tab>
+              <Tab>Bus Schedule by Stop Code</Tab>
             </TabList>
 
             <TabPanel>
@@ -45,74 +42,9 @@ export default function App() {
 
       </Container>
     </div>
-    );
-
+  );
 }
 
-// class Clock extends React.Component{
-//   constructor(props) {
-//     super(props);
-//     this.state = {time: new Date()};
-//   }
-//
-//   componentDidMount() {
-//     this.ticker = setInterval(() => this.tick(), 1000)
-//   }
-//
-//   componentWillUnmount() {
-//     clearInterval(this.ticker)
-//   }
-//
-//   tick() {
-//     this.setState({time: new Date()});
-//   };
-//
-//   render(){
-//     return (
-//             <div>
-//               It is {new Date().toLocaleTimeString()}.
-//             </div>
-//         )
-//   }
-// }
-
-// function Clock(){
-//   const [time, setTime] = useState(new Date())
-//   const [tickerIsOn, setTickerIsOn] = useState(false)
-//   const [ticker, setTicker] = useState(0)
-//
-//   function tick(){
-//     setTime(new Date())
-//   }
-//
-//   useEffect(() =>{
-//     if(!tickerIsOn){
-//       setTicker(setInterval(tick,100))
-//       setTickerIsOn(true)
-//     }
-//     return () => {
-//       if(tickerIsOn){
-//         clearInterval(ticker)
-//         setTickerIsOn(false)
-//       }
-//     }
-//
-//   })
-//
-//   return (
-//           <div>
-//             It is {new Date().toLocaleTimeString()}.
-//           </div>
-//       )
-// }
-//
-
-
 const BLANK_STATE = {
-  example: {
-    id: null,
-    data1: null,
-    data2: null
-  },
-  status: "",
+  status: ""
 };

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HomeDiv = styled.div`
-  background-color: white;
+  background-color: #e01e22;
   position: relative;
   height: 100%;
   padding-bottom: 5px;

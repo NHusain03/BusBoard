@@ -7,11 +7,13 @@ app = Flask(__name__)
 
 @app.route('/healthcheck')
 def healthcheck():
-    return {"Status" : "OK"}
+    print("hello")
+    return {"Status" : "What's up"}
 
 @app.route('/GetBusFromCode/<bus_code>')
 def GetBusFromCode(bus_code):  # put application's code here
     arriving_buses_response = requests.get("https://api-nile.tfl.gov.uk/StopPoint/" + bus_code + "/Arrivals").json()
+    print(arriving_buses_response)
     arriving_buses = []
     out = ""
 

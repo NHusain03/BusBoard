@@ -10,13 +10,14 @@ export default function GetBusesTab() {
 
     const GetBusFromCode = (buscode) => {
         APIService.GetBusFromCode(buscode).then((ArrivingBuses) => {
-            alert(ArrivingBuses);
-            setMessage(ArrivingBuses)
+            // alert(ArrivingBuses);
+            const formattedBuses = formatArrival(ArrivingBuses);
+            setMessage(formattedBuses)
         })
     }
 
     let handleSubmit = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         GetBusFromCode(buscode);
     }
 
@@ -24,10 +25,17 @@ export default function GetBusesTab() {
         setBuscode(event.target.value)
     }
 
+    let formatArrival = (ArrivingBuses) => {
+        const splitBuses = ArrivingBuses['results'].split('\n');
+        splitBuses.pop();
+        return splitBuses.map(bus => <li>{bus}</li>);
+
+    }
+
     return (
         <div>
             <form>
-                <label>Bus code:
+                <label>Bus Stop Code:
                     <input type="text" value={buscode} onChange={(event) => handleBuscodeChange(event)} />
                 </label>
 
