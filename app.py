@@ -5,10 +5,15 @@ from StopPoints import StopPoints
 
 app = Flask(__name__)
 
-@app.route('/GetBusFromCode/<busCode>')
-def GetBusFromCode(busCode):  # put application's code here
-    arriving_buses_response = requests.get("https://api-nile.tfl.gov.uk/StopPoint/"+busCode+"/Arrivals").json()
+@app.route('/healthcheck')
+def healthcheck():
+    return {"Status" : "OK"}
+
+@app.route('/GetBusFromCode/<bus_code>')
+def GetBusFromCode(bus_code):  # put application's code here
+    arriving_buses_response = requests.get("https://api-nile.tfl.gov.uk/StopPoint/" + bus_code + "/Arrivals").json()
     arriving_buses = []
+    out = ""
 
     for bus in arriving_buses_response:
         arriving_buses.append(ArrivingBus(bus['timeToStation'], bus['vehicleId'], bus['destinationName']))
@@ -19,11 +24,12 @@ def GetBusFromCode(busCode):  # put application's code here
         arriving_buses = arriving_buses[:5]
 
     for bus in arriving_buses:
-        print(bus)
+        out += str(bus) + "\n"
 
-    return arriving_buses
+    return {"results": out}
 
-@app.route('/GetBusStopsFromPostcode/<postCode>')
+
+@app.route('/GetBusStopsFromPostcode/<postcode>')
 def GetBusStopsFromPostcode(postcode):  # put application's code here
     stops = []
 
@@ -33,7 +39,7 @@ def GetBusStopsFromPostcode(postcode):  # put application's code here
     NaptanOnstreetBusCoachStopCluster%2C%20NaptanOnstreetBusCoachStopPair%2C%20NaptanPrivateBusCoachTram\
     %2C%20NaptanPublicBusCoachTram%2C%20NaptanBusWayPoint&radius=200&useStopPointHierarchy=\
     false&modes=bus&lat=" + str(postcode_response['result']['latitude']) + "&lon=" +
-                                       (str(postcode_response['result']['longitude']))).json()
+                                        (str(postcode_response['result']['longitude']))).json()
 
     for stop in stop_points_response['stopPoints']:
         stops.append(StopPoints(stop['id'], stop['commonName'],
@@ -49,6 +55,7 @@ def GetBusStopsFromPostcode(postcode):  # put application's code here
         buses = GetBusFromCode(stop.naptanID)
 
     return ""
+
 
 if __name__ == '__main__':
     app.run()
