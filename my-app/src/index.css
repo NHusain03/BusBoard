@@ -1,6 +1,83 @@
+
 body {
-    margin: 0;
-    padding: 0;
-    background-color: white;
-    font-family: "Segoe UI", "Helvetica Neue", "sans-serif";
+
+    background-image: url(1371191.png);
+    background-size: 100%;
+    background-color: whitesmoke;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: white;
+    margin-top:0;
+    font-size: 20px;
+    text-align: left;
+    font-family: Lato, 'helvetica neue', helvetica, arial, sans-serif;
+    font-weight: 800;
+    -webkit-font-smoothing: antialiased;
+
 }
+
+input[type=text] {
+  border-radius: 4px;
+}
+
+#box1 {
+	background: white;
+    opacity: 0.6;
+    box-shadow: 5px 5px 5px 5px;
+	border-radius: 25px;
+    width: 40%;
+    height: 480px;
+    -webkit-text-fill-color: black;
+    margin-left: 9%;
+    margin-top: 5%;
+    text-align: center;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 0.6; }
+}
+
+#formtext {
+    opacity: 1;
+    -webkit-text-fill-color: black;
+    margin-top: 50px;
+}
+
+#inputtext {
+    margin-top: 25px;
+    margin-bottom: 20px;
+    opacity: 1;
+    -webkit-text-fill-color: black;
+}
+
+#stops {
+    opacity: 100%;
+    font-size: 22px
+}
+
+#buses {
+    font-size: 17px
+}
+
+#messageText{
+    opacity: 100%;
+    -webkit-text-fill-color: black;
+    font-size: 15px;
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+
+#bustitle {
+    margin-top: 20%;
+}
+
+#searchButton {
+    opacity: 1;
+    -webkit-text-fill-color: black;
+    font-family: Lato, 'helvetica neue', helvetica, arial, sans-serif;
+}
+

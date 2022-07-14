@@ -1,7 +1,7 @@
 class ArrivingBus():
-    def __init__(self, timeToStation, vehicleID, destinationName):
+    def __init__(self, timeToStation, lineID, destinationName):
         self.timeToStation = timeToStation
-        self.vehicleID = vehicleID
+        self.lineID = lineID
         self.destinationName = destinationName
 
     def __str__(self):

@@ -3,10 +3,8 @@ import React, {Component, useEffect, useState} from "react";
 import { Container } from "reactstrap";
 import { HomePage } from "./homePage/HomePage";
 import { ApiService } from "./ApiService";
-import {clear} from "@testing-library/user-event/dist/clear";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import GetBusesTab from "./GetBuses";
+import GetBusStopsFromPostcode from "./GetBusStopsFromPostcode";
 
 export default function App() {
   const apiService = new ApiService()
@@ -27,21 +25,24 @@ export default function App() {
   }
 
   return (
-    <div>
-      <Container>
-          <HomePage/>
-          <Tabs>
-            <TabList>
-              <Tab>Bus Schedule by Stop Code</Tab>
-            </TabList>
 
-            <TabPanel>
-              <GetBusesTab />
-            </TabPanel>
-          </Tabs>
+        <div>
+            <head>
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
+                        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap"
+                              rel="stylesheet"/>
+                <title>Bus Board</title>
+            </head>
+          <Container>
+                <body>
+                  <HomePage/>
+                      <GetBusStopsFromPostcode />
 
-      </Container>
-    </div>
+                </body>
+          </Container>
+        </div>
+
   );
 }
 

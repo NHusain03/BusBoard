@@ -28,9 +28,9 @@ export class ApiService {
         );
     }
 
-    GetBusStopsFromPostcode(postcode) {
+    GetBusStopsFromPostcode(postcode, radius) {
         return new Promise((resolve) =>
-            fetch("/GetBusStopsFromPostcode/" + postcode, {
+            fetch("/GetBusStopsFromPostcode/" + String(postcode) + "/" + String(radius), {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
